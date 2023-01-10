@@ -150,3 +150,14 @@ body {
 .movies .movie .info .title {
   color: var(--color-white);
 }
+
+.view-more {
+  width: 100%;
+  max-width: 300px; /* 가로로 최대한 늘어나되(100%) 300px까지만 가능 */
+  margin: 20px auto; /* 가운데 정렬, margin 위아래 20px. 좌우는 브라우저가 자동으로 계산 */
+  display: block; /* button tag는 block 요소가 아니기 때문에 margin 좌우 auto로 해도 가운데 정렬이 되지 않음. 이를 보정하기 위해 display를 block element로 지정 */
+}
+
+.view-more.hide { /* hide시 화면에 보이지 않도록 */
+  display: none;
+}
