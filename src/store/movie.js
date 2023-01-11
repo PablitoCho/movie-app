@@ -4,7 +4,8 @@ const store = new Store({
   searchText : '',
   page: 1,
   pageMax: 1,
-  movies: []
+  movies: [],
+  loading : false
 })
 
 export default store
@@ -12,6 +13,7 @@ export default store
 // test key : 7035c60c
 // ex : https://www.omdbapi.com/?s=frozen&apikey=812fae45
 export const searchMovies = async page => {
+  store.state.loading = true
   store.state.page = page
   if(page==1) { // 새로운 검색시 page가 1로 들어온다
     store.state.movies = []
@@ -23,4 +25,5 @@ export const searchMovies = async page => {
     ...Search // 새로 가지고 온 영화 정보
   ]
   store.state.pageMax = Math.ceil(Number(totalResults) / 10)
+  store.state.loading = false
 }
