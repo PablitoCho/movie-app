@@ -126,6 +126,12 @@ body {
   gap: 20px; /* 각 아이템 사이 정렬 20px */
 }
 
+.movie-list .message {
+  color: var(--color-primary);
+  font-size: 20px;
+  text-align: center;
+}
+
 .movies .movie {
   --width: 200px;
   width: var(--width);
