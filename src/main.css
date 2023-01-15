@@ -18,6 +18,7 @@ body {
   color: var(--color-white);
 }
 
+/* 화면에 내용을 가운데 정렬 */
 .container {
   max-width: 1120px;
   margin: 0 auto;
@@ -183,4 +184,48 @@ body {
 
 .view-more.hide { /* hide시 화면에 보이지 않도록 */
   display: none;
+}
+
+.the-movie {
+  color: var(--color-white-50);
+  display: flex;
+  gap: 70px;
+}
+
+.the-movie .poster {
+  flex-shrink: 0; /* image가 온전히 출력되도록, 감소 너비 비율을 기본값인 1에서 사용하지 않겠다는 0으로 변경 */
+  --width: 500px;
+  width: var(--width);
+  height: calc(var(--width) * 3 / 2);
+  border-radius: 10px;
+  background-size: cover;
+  background-color: var(--color-area);
+}
+
+.the-movie .specs {
+  flex-grow: 1;
+}
+
+.the-movie .title {
+  font-size: 70px;
+  font-family: "Oswald", sans-serif;
+  line-height: 1;
+  color: var(--color-white);
+  margin-bottom: 30px;
+}
+
+.the-movie .labels {
+  color: var(--color-primary);
+  margin-bottom: 20px;
+}
+
+.the-movie .plot {
+
+}
+
+.the-movie h3 {
+  font-size: 20px;
+  font-family: "Oswald", sans-serif;
+  color: var(--color-white);
+  margin: 24px 0 6px; /*위 좌우 아래*/
 }
