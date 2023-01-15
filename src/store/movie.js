@@ -5,6 +5,9 @@ const store = new Store({
   page: 1,
   pageMax: 1,
   movies: [],
+  movie: {
+
+  }, // movie 상세정보
   loading : false,
   message : 'Search for the movie title!'
 })
@@ -39,4 +42,13 @@ export const searchMovies = async page => {
   } finally {
     store.state.loading = false
   }  
+}
+
+export const getMovieDetails = async id => {
+  try {
+    const res = await fetch(`https://www.omdbapi.com?apikey=812fae45&i=${id}&plot=full`) // network를 타는 코드는 try-catch로 넣어두자
+    store.state.movie = await res.json()
+  } catch(error) {
+    console.log('getMovieDetails error:', error)
+  }
 }
