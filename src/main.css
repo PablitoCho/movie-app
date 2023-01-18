@@ -24,6 +24,18 @@ body {
   margin: 0 auto;
   padding: 40px 0;
 }
+@media (max-width: 1200px) {
+  /* 화면 크기가 좌우 1200px 이하인 경우 */
+  .container {
+    padding: 40px;
+  }
+}
+@media (max-width: 600px) {
+  /* 화면 크기가 좌우 600px 이하인 경우 */
+  .container {
+    padding: 40px 20px;
+  }
+}
 
 .btn {
   height: 50px;
@@ -150,6 +162,18 @@ header .user img {
   width: 100%;
 }
 
+@media (max-width: 600px) {
+  header {
+    padding: 14px 20px;
+  }
+  header nav {
+    display: none;
+  }
+  header .user {
+    right: 20px;
+  }
+}
+
 footer {
   padding: 40px 40px 60px; /* 위 40, 좌우 40, 아래 60 px 내부여백 */
   text-align: center;
@@ -180,6 +204,12 @@ footer a:hover{
 }
 .headline p {
   color: var(--color-white-30);
+}
+
+@media (max-width:600px) {
+  .headline h1 {
+    font-size: 60px;
+  }
 }
 
 .search {
@@ -327,6 +357,24 @@ footer a:hover{
   margin: 24px 0 6px;
 }
 
+@media (max-width: 1200px) {
+  .the-movie {
+    gap: 30px;
+  }
+  .the-movie .poster {
+    --width: 300px;
+  }
+}
+
+@media (max-width: 720px) {
+  .the-movie {
+    display: block; /* 위아래 수직으로 정보가 보이도록... flex > block으로 변경 */
+  }
+  .the-movie .title {
+    font-size: 50px;
+    margin-top: 50px;
+  }
+}
 
 .about .photo {
   width: 230px;
