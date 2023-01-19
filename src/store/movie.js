@@ -14,8 +14,6 @@ const store = new Store({
 
 export default store
 
-// test key : 7035c60c
-// ex : https://www.omdbapi.com/?s=frozen&apikey=812fae45
 export const searchMovies = async page => {
   store.state.loading = true
   store.state.page = page
