@@ -1,6 +1,24 @@
 ///// Component /////
+interface ComponentPayload {
+  tagName?: string, 
+  props?: { // 어떤 속성이 들어올지 모르니 인덱싱 가능 타입의 객체로 typing
+    [key: string] : unknown // 어떤 값이 들어올지 모른다.
+  },
+  state?: {
+    [key: string] : unknown
+  }
+} // 각 속성은 optional. ?를 붙인다.
+
+
 export class Component {
-  constructor(payload = {}) {
+  /*
+    this에서 사용할 수 있는 el, props, state 등.
+    typecript class에서 this keyword에서 사용할 속성들은 class의 body 부분에서 선언해주어야 한다.
+  */
+  public el
+  public props
+  public state
+  constructor(payload : ComponentPayload = {}) {
     const {
       tagName = 'div', // 최상위 요소의 태그 이름
       props = {},
