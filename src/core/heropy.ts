@@ -36,34 +36,48 @@ export class Component {
 
 
 ///// Router /////
+interface Route {
+  path : string
+  component : typeof Component
+}
+type Routes = Route[] // 타입 별칭 (Routes는 Route 타입변수의 배열)
+
 // 페이지 렌더링!
-function routeRender(routes) {
+function routeRender(routes:Routes) {
   // 접속할 때 해시 모드가 아니면(해시가 없으면) /#/로 리다이렉트!
   if (!location.hash) {
     history.replaceState(null, '', '/#/') // (상태, 제목, 주소)
   }
-  const routerView = document.querySelector('router-view')
+  const routerView = document.querySelector('router-view') // 속성을 제대로 찾지 못하면 null로 가져올 수 있다.
   const [hash, queryString = ''] = location.hash.split('?') // 물음표를 기준으로 해시 정보와 쿼리스트링을 구분
 
   // 1) 쿼리스트링을 객체로 변환해 히스토리의 상태에 저장!
+  // acc : accumulator 누적되는 값. 초기값 {} -> typescript에서는 값 추가를 허용하지 않음
+  interface Query { // indexing 가능 타입으로 선언
+    [key:string]:string
+  }
   const query = queryString
     .split('&')
     .reduce((acc, cur) => {
       const [key, value] = cur.split('=')
       acc[key] = value
       return acc
-    }, {})
+    }, {} as Query) // Query interface로 타입 단언
   history.replaceState(query, '') // (상태, 제목)
 
   // 2) 현재 라우트 정보를 찾아서 렌더링!
   const currentRoute = routes.find(route => new RegExp(`${route.path}/?$`).test(hash))
-  routerView.innerHTML = ''
-  routerView.append(new currentRoute.component().el)
+  
+  if(routerView) { // 타입 가드
+    routerView.innerHTML = ''
+    // currentRoute 데이터가 존재하면... A && B && C 가장 먼저 만나는 false를 반환하고 끝난다. (if문처럼 사용할 수 있다.)
+    currentRoute && routerView.append(new currentRoute.component().el) // currentRoute가 true면, 이어지는 코드를 실행한다.
+  }
 
   // 3) 화면 출력 후 스크롤 위치 복구!
   window.scrollTo(0, 0)
 }
-export function createRouter(routes) {
+export function createRouter(routes:Routes) {
   // 원하는(필요한) 곳에서 호출할 수 있도록 함수 데이터를 반환!
   return function () {
     window.addEventListener('popstate', () => {
