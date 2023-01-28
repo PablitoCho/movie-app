@@ -1,7 +1,15 @@
 import { Component } from '../core/heropy'
+import { SimpleMovie } from '../store/movie'
+
+interface Props {
+  [key:string] : unknown
+  movie : SimpleMovie
+}
 
 export default class MovieItem extends Component {
-  constructor(props) {
+  // class 내부에서 this.props로 사용중 > 
+  public props!: Props
+  constructor(props:Props) {
     super({
       props,
       tagName: 'a' // 상세 페이지 이동
