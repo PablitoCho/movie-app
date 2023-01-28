@@ -12,7 +12,7 @@ export default class Search extends Component {
         Search!
       </button>
     `
-    const inputEl = this.el.querySelector('input')
+    const inputEl = this.el.querySelector('input') as HTMLInputElement
     inputEl.addEventListener('input', () => {
       movieStore.state.searchText = inputEl.value
     })
@@ -22,7 +22,7 @@ export default class Search extends Component {
       }
     })
     const btnEl = this.el.querySelector('.btn')
-    btnEl.addEventListener('click', () => {
+    btnEl?.addEventListener('click', () => {
       if(movieStore.state.searchText.trim()) {
         searchMovies(1)
       }

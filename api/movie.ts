@@ -8,11 +8,12 @@
 
 // serverless 함수는 vercel package가 동작하는 node.js에서 동작(브라우저에서 동작하지 않음)
 // node.js는 fetch 함수가 없다 -> node-fetch package 설치
-import fetch from "node-fetch"
+import fetch from "node-fetch" // 라이브러리에서 typescript 지원 X. definitelytyped 설치 (npm install -D @types/node-fetch)
+import { VercelRequest, VercelResponse } from '@vercel/node'
 
 const { APIKEY } = process.env
 
-export default async function handler(request, response) {
+export default async function handler(request:VercelRequest, response:VercelResponse) {
   const { title, page, id } = JSON.parse(request.body)
   const url = id // id가 있으면 상세정보 요청, otherwise 영화목록 요청
     ? `https://omdbapi.com?apikey=${APIKEY}&i=${id}&plot=full`

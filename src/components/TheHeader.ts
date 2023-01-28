@@ -1,6 +1,15 @@
 import { Component } from '../core/heropy'
 
+interface State {
+  [key:string] : unknown
+  menus : {
+    name:string
+    href:string
+  }[]
+}
+
 export default class TheHeader extends Component {
+  public state!: State // 명확한 할당 단언(!) : 초기값이 주어지지 않았지만, 할당 단언을 함으로써 초기값이 할당된 것처럼 사용
   constructor() {
     super({
       tagName : 'header',
